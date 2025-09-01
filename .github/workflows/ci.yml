@@ -1,30 +1,47 @@
+# .github/workflows/ci.yml
 name: CI
 
 on:
-    pull_request:
-      branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
-    build:
-        runs-on: ubuntu-latest 
-        steps:
-          # - name: Checkout
-            - uses: actions/checkout@v4
-            - name: Say hello
-              run: echo "CI ran successfully"            
+  sanity:
+    name: Sanity check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Echo
+        run: echo "CI is wired up ✅"
 
-          # - name: Set up Node.js
-          #   uses: actions/setup-node@v4
-          #   with:
-          #     node-version: 18
-              
-          # - name: Install dependencies
-          #   run: npm install
+  yaml_lint:
+    name: Lint YAML
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ibiqlik/action-yamllint@v3
+        with:
+          config_file: .yamllint.yml
+          strict: false
 
-          # - name: Run tests
-          #   run: npm test
+  md_lint:
+    name: Lint Markdown
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DavidAnson/markdownlint-cli2-action@v16
+        with:
+          config: .markdownlint.json
+          globs: |
+            **/*.md
+            README
 
-        
-
-
-            
+  spellcheck:
+    name: Spellcheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: codespell-project/actions-codespell@v2
+        with:
+          check_hidden: false
+          ignore_words_list: te,hmm
