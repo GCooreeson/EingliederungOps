@@ -1,4 +1,11 @@
 # EingliederungOps Team
 
 ## Motto: „Demnächst am Start“
-## Über uns: „Alles über unser Team – stay tuned!“
+## Über uns: „Alles über unser Team – Stay tuned!
+
+## Entwicklungs-Workflow
+
+- Arbeitet bitte im Branch `dev`  
+- `main` bleibt geschützt (nur für Produktion)  
+- Neue Features immer von `dev` abzweigen  
+- PRs zuerst nach `dev`, später von `dev` nach `main`
