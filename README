@@ -5,7 +5,7 @@
 
 ## Entwicklungs-Workflow
 
-- Bitte arbeitet im Branch `dev`  
-- `main` bleibt geschützt (nur für die Produktion)  
-- Neue Features immer von `dev` -Branch abzweigen  
-- Pull Requests (PRs) zuerst nach `dev`, anschließend von `dev` nach `main`
+- Arbeitet bitte im Branch `dev`  
+- `main` bleibt geschützt (nur für Produktion)  
+- Neue Features immer von `dev` abzweigen  
+- PRs zuerst nach `dev`, später von `dev` nach `main`
