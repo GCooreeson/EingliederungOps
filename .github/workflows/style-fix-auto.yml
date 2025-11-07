@@ -1,13 +1,11 @@
 name: Style Fix (Auto)
 
 on:
-  workflow_dispatch:
-  push:
-    branches: [ CG/add-style-check ]
   workflow_run:
-    workflows: ["Style Check"]   # run only after Style Check completes
+    workflows: ["Style Check"]
     types:
       - completed
+  workflow_dispatch:   # optional: keep if you still want to trigger manually
 
 permissions:
   contents: write
