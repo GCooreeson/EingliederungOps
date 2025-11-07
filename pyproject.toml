@@ -1,0 +1,28 @@
+[tool.black]
+line-length = 88
+target-version = ["py311"]
+exclude = '''
+(
+  venv
+  |.venv
+  |env
+  |venv
+  |build
+  |dist
+  |__pycache__
+  |\.git
+)
+'''
+
+[tool.ruff]
+target-version = "py311"
+line-length = 88
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]  # Error, Formatter, Import rules
+ignore = ["E203", "E501"]  # Match Black
+fixable = ["ALL"]
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
+known-first-party = []
