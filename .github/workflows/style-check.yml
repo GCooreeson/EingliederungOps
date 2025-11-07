@@ -2,9 +2,9 @@ name: Style Check
 
 on:
   pull_request:
-    branches: [ main, dev ]
+    branches: [ main, dev, CG/add-style-check ]
   push:
-    branches: [ main, dev ]
+    branches: [ main, dev, CG/add-style-check ]
   workflow_dispatch:
 
 jobs:
