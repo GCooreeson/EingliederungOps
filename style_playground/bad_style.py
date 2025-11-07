@@ -164,10 +164,10 @@ def too_many_blank_lines():  ### bad inline comment
 
 
 def long_lambda():  # Black 16: excessive blank lines above
-    l = (
-        lambda x, y: x + y
-    )  # Ruff 4: lambda assignment (prefer def), Black 17: missing spaces
-    return l(1, 2)
+    def add(x: int, y: int) -> int:
+        return x + y  # Ruff 4: lambda assignment (prefer def), Black 17: missing spaces
+
+    return (1, 2)
 
 
 data = [
@@ -181,7 +181,6 @@ for i in range(0, 10):
 def misaligned():  # Black 20: extra spaces
     a = 10
     if a > 5:
-        b = a + 2
         print("bigger")  # Black 21: multiple spaces
     else:
         print("smaller")  # Black 22: inline statement
@@ -200,5 +199,4 @@ X = 123  # Ruff 6: constant naming should be uppercase but spacing bad, Black 25
 
 
 def unused_stuff():  # Ruff 7: unused variable
-    temp = 99
     return "ok"
