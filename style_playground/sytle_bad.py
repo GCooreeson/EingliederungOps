@@ -1,6 +1,3 @@
-import os, sys, math, json, time  # Black 1: multiple imports on one line
-from math import sqrt, ceil  # Ruff 1: unused import
-import re
 import datetime  # Black 2: multiple statements on one line
 
 
