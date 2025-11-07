@@ -1,26 +1,26 @@
 [tool.black]
 line-length = 88
 target-version = ["py311"]
-exclude = '''
+extend-exclude = '''
 (
   venv
-  |.venv
-  |env
-  |venv
-  |build
-  |dist
-  |__pycache__
-  |\.git
+  | .venv
+  | env
+  | build
+  | dist
+  | __pycache__
+  | \.git
 )
 '''
 
 [tool.ruff]
 target-version = "py311"
 line-length = 88
+fix = true
 
 [tool.ruff.lint]
-select = ["E", "F", "I"]  # Error, Formatter, Import rules
-ignore = ["E203", "E501"]  # Match Black
+select = ["E", "F", "I"]
+ignore = ["E203", "E501"]
 fixable = ["ALL"]
 
 [tool.ruff.lint.isort]
