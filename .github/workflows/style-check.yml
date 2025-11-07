@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: [ main, dev ]
   push:
-    branches: [ main, dev ]
+    branches: [ main, develop ]
   workflow_dispatch:
 
 jobs:
@@ -24,8 +24,8 @@ jobs:
           python -m pip install --upgrade pip
           pip install ruff black
 
-      - name: Ruff Lint + Import Check
-        run: ruff check . --output-format=github
-
       - name: Black Format Check
         run: black --check --diff .
+
+      - name: Ruff Lint + Import Check
+        run: ruff check . --output-format=github
