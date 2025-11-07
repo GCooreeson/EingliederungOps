@@ -9,7 +9,9 @@ on:
 
 jobs:
   style-check:
+    name: Run Ruff + Black Checks
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -19,13 +21,25 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements*.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
       - name: Install Ruff + Black
         run: |
           python -m pip install --upgrade pip
           pip install ruff black
 
       - name: Black Format Check
-        run: black --check --diff .
+        run: |
+          echo "Checking formatting with Black..."
+          black --check --diff .
 
       - name: Ruff Lint + Import Check
-        run: ruff check . --output-format=github
+        run: |
+          echo "Running Ruff lint..."
+          ruff check . --output-format=github
