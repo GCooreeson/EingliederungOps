@@ -1,16 +1,16 @@
 name: Style Fix (Manual)
 
 on:
-  workflow_dispatch:
-  push:
-    branches: [ CG/add-style-check ]
+  workflow_dispatch:   # runs only when manually triggered from GitHub UI
 
 permissions:
-  contents: write  # needed to push fixed files
+  contents: write  # needed to push formatted files
 
 jobs:
   style-fix:
+    name: Manual Ruff + Black Auto-Fix
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -23,16 +23,28 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements*.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
       - name: Install Ruff + Black
         run: |
           python -m pip install --upgrade pip
           pip install ruff black
 
       - name: Ruff Auto-Fix
-        run: ruff check . --fix
+        run: |
+          echo "Running Ruff auto-fix..."
+          ruff check . --fix || true   # continue even if some issues remain
 
       - name: Black Auto-Format
-        run: black .
+        run: |
+          echo "Running Black auto-format..."
+          black .
 
       - name: Commit and Push Changes
         run: |
