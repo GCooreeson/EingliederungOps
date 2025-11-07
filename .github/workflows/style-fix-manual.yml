@@ -1,9 +1,9 @@
 name: Style Fix (Manual)
 
 on:
-  workflow_dispatch:
+  workflow_dispatch:   # allows manual trigger from GitHub UI
   push:
-    branches: [ CG/add-style-check ]
+    branches: [ main, dev ]   # runs only when pushing to main or dev
 
 permissions:
   contents: write  # needed to push fixed files
